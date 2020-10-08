@@ -23,5 +23,6 @@ Queue.prototype.dequeue = function() {
   delete this.storage[this.size() - 1];
   return deleted;
 };
+var queue = new Queue;
 
 
