@@ -46,6 +46,11 @@ describe('hashTable', function() {
     expect(hashTable.retrieve(v2)).to.equal(v2);
     window.getIndexBelowMaxForKey = oldHashFunction;
   });
+  //added by us:
+  it('should be able to contain data types that pass a strict equality test', function() {
+    hashTable.insert(true, false);
+    expect(hashTable.retrieve(true)).to.equal(false);
+  });
 
   // (Advanced! Remove the extra "x" when you want the following tests to run)
   xit ('should double in size when needed', function() {
@@ -74,3 +79,4 @@ describe('hashTable', function() {
     expect(hashTable._limit).to.equal(8);
   });
 });
+

@@ -68,4 +68,18 @@ describe('graph', function() {
     expect(graph.hasEdge(3, 5)).to.equal(true);
     expect(graph.hasEdge(5, 5)).to.equal(true);
   });
+
+  it('should not have an edge to a node added after a callback has been executed', function() {
+    var connectToFive = function(item) {
+      graph.addEdge(item, 5);
+    };
+    graph.addNode(5);
+    graph.addNode(2);
+    graph.addNode(1);
+    graph.addNode(3);
+    graph.forEachNode(connectToFive);
+    graph.addNode(7);
+    expect(graph.hasEdge(7, 5)).to.equal(false);
+  });
 });
+
